@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_01_204340) do
+ActiveRecord::Schema.define(version: 2018_11_01_204650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "trip_legs", force: :cascade do |t|
+    t.integer "trip_id"
+    t.integer "trip_step"
+    t.string "start_point_coor"
+    t.string "end_point_coor"
+    t.string "start_point_name"
+    t.string "end_point_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trips", force: :cascade do |t|
     t.integer "user_id"

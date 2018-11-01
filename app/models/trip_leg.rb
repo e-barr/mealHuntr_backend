@@ -1,0 +1,2 @@
+class TripLeg < ApplicationRecord
+end
