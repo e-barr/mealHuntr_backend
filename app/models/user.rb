@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :trips
+  has_one :current_meal, through: :trips
 
   validates :username, :email, presence: true, uniqueness: true
   validates :location, presence: true

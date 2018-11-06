@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email, unique: true
       t.string :password_digest
       t.string :location
+      t.integer :current_meal_id, null: true
 
       t.timestamps
     end
