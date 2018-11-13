@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :trips
-  has_one :current_meal, through: :trips
+  has_many :meals, through: :trips
 
   validates :username, :email, presence: true, uniqueness: true
   validates :location, presence: true
@@ -13,5 +13,9 @@ class User < ApplicationRecord
     else
       false
     end
+  end
+
+  def current_meal
+    meals.find { |meal| meal.current_meal === true }
   end
 end

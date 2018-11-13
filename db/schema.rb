@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_01_204650) do
+ActiveRecord::Schema.define(version: 2018_11_06_205040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "meal_items", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.integer "meal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "meal_name"
+    t.integer "trip_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trip_legs", force: :cascade do |t|
     t.integer "trip_id"
@@ -28,7 +44,6 @@ ActiveRecord::Schema.define(version: 2018_11_01_204650) do
 
   create_table "trips", force: :cascade do |t|
     t.integer "user_id"
-    t.string "meal_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_204650) do
     t.string "email"
     t.string "password_digest"
     t.string "location"
+    t.integer "current_meal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
