@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_205040) do
   create_table "meals", force: :cascade do |t|
     t.string "meal_name"
     t.integer "trip_id"
-    t.integer "user_id"
+    t.boolean "current_meal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,10 +34,8 @@ ActiveRecord::Schema.define(version: 2018_11_06_205040) do
   create_table "trip_legs", force: :cascade do |t|
     t.integer "trip_id"
     t.integer "trip_step"
-    t.string "start_point_coor"
-    t.string "end_point_coor"
-    t.string "start_point_name"
-    t.string "end_point_name"
+    t.string "start_coor"
+    t.string "end_coor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,7 +51,6 @@ ActiveRecord::Schema.define(version: 2018_11_06_205040) do
     t.string "email"
     t.string "password_digest"
     t.string "location"
-    t.integer "current_meal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
