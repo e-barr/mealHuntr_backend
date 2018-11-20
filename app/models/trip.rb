@@ -1,32 +1,26 @@
 class Trip < ApplicationRecord
+  after_save :generate_trip_legs
   belongs_to :user
   has_many :trip_legs
   has_one :meal
 
-  attr_accessor :user
-
-  def initialize(user_id, coor_arr)
-    return 'Need a start and end point' unless coor_arr.split(",").length >= 4
-    generate_trip_legs(coor_arr)
-    self.user = User.find { |user| user.id === user_id }
-  end
-
-  def generate_trip_legs(coor_arr)
-    coordinates = coor_arr.dup.split(",")
+  def generate_trip_legs
+    coordinates = coor_str.dup.split(",")
     trip_step = -1
+    counter = coor_str.dup.split(",").length / 2
 
-    while coordinates.length != 0
+    counter.times do |t|
       two_coors = []
       trip_step += 1
-      2.times do |t|
-        two_coors.push(coordinates.shift)
-      end
+      two_coors.push(coordinates.shift)
+      two_coors.push(coordinates.shift)
 
-      TripLeg.new(self.id, trip_step, two_coors[0], two_coors[1])
+      TripLeg.create(trip_id: self.id, user_id: self.user_id, trip_step: trip_step, start_coor: two_coors[0], end_coor: two_coors[1])
     end
 
+
   end
 
-  def get_trip_legs
-  end
+  # def get_trip_legs
+  # end
 end

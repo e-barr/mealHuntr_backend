@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_205040) do
 
   create_table "trip_legs", force: :cascade do |t|
     t.integer "trip_id"
+    t.integer "user_id"
     t.integer "trip_step"
     t.string "start_coor"
     t.string "end_coor"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_205040) do
 
   create_table "trips", force: :cascade do |t|
     t.integer "user_id"
+    t.string "coor_str"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
