@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_205040) do
   create_table "meal_items", force: :cascade do |t|
     t.string "name"
     t.string "status"
-    t.integer "meal_id"
+    t.integer "trip_leg_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

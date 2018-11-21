@@ -1,7 +1,6 @@
 class Meal < ApplicationRecord
-  has_many: :meal_items
-  belongs_to: :trip
-  belongs_to: :user, thorugh: :trip
+  belongs_to :trip
+  has_one :user, through: :trip
 
   def total_status(meal_id)
   end

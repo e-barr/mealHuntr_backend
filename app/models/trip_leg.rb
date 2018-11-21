@@ -1,5 +1,6 @@
 class TripLeg < ApplicationRecord
   belongs_to :trip
-  belongs_to :user
+  has_one :user, through: :trip
 
+  has_many :meal_items
 end
